@@ -14,6 +14,7 @@ Node *create_node(char *val);
 int add_front(Node **start, char *val);
 void _terminate(Node *start);
 void print_linked(Node *start);
+void print_reverse(Node *start);
 
 int main(int argc, char **argv)
 {
@@ -41,8 +42,8 @@ int main(int argc, char **argv)
         }
     }
 
-    print_linked(sentence);
-    free_full(sentence);
+    print_reverse(sentence);
+    _terminate(sentence);
 }
 
 Node *create_node(char *val)
@@ -94,6 +95,22 @@ void print_linked(Node *start)
     for (Node *curr = start; curr != NULL; curr = curr -> next)
     {
         printf("%s ", curr -> word);
+    }
+    printf("\n");
+}
+
+void print_reverse(Node *start)
+{
+    Node *curr = start;
+    while (curr -> next != NULL)
+    {
+        curr = curr -> next;
+    }
+
+    while (curr != NULL)
+    {
+        printf("%s ", curr -> word);
+        curr = curr -> previous;
     }
     printf("\n");
 }
