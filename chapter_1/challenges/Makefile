@@ -13,7 +13,7 @@ linked_list.o: linked_list.c functions.h
 # TODO: instructions to compile and run the test file
 test: test.o functions.o
 	$(GCC) -o test test.o functions.o
-	# rm -f *.0
+	# rm -f *.o
 	# ./test
 	# rm -f test
 
@@ -25,6 +25,9 @@ clean:
 
 valtest:
 	valgrind  --leak-check=full  --show-leak-kinds=all ./test
+	rm -f *.o
+	rm -rf test *.dSYM
 
 val:
 	valgrind  --leak-check=full  --show-leak-kinds=all ./linked_list
+	rm -rf *.dSYM
