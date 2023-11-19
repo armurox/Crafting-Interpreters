@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "functions.h"
 
 int main(int argc, char **argv)
 {
@@ -26,6 +27,9 @@ int main(int argc, char **argv)
             return 1;
         }
     }
+
+    // Just removing any mention of Bob from sentence
+    delete_node(&sentence, "Bob");
 
     print_reverse(sentence);
     _terminate(sentence);
