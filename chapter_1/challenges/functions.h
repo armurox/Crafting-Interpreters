@@ -16,4 +16,5 @@ int add_front(Node **start, char *val);
 void _terminate(Node *start);
 void print_linked(Node *start);
 void print_reverse(Node *start);
+void delete_node(Node **start, char *val);
 #endif

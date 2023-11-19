@@ -1,5 +1,6 @@
 #include "functions.h"
 #include <stdlib.h>
+#include <string.h>
 
 Node *create_node(char *val)
 {
@@ -16,6 +17,7 @@ Node *create_node(char *val)
     return start;
 }
 
+// Add nodes to front (stack implementation)
 int add_front(Node **start, char *val)
 {
     Node *temp = create_node(val);
@@ -54,6 +56,7 @@ void print_linked(Node *start)
     printf("\n");
 }
 
+// Print out sentence in order it is put in (needs to be reversed as add node is a stack)
 void print_reverse(Node *start)
 {
     Node *curr = start;
@@ -68,4 +71,37 @@ void print_reverse(Node *start)
         curr = curr -> previous;
     }
     printf("\n");
+}
+
+
+void delete_node(Node **start, char *val)
+{
+    for (Node *curr = *start; curr != NULL; curr = curr -> next)
+    {
+        // Delete middle nodes
+        if (strcmp(curr -> word, val) == 0 && curr != *start && curr -> next != NULL)
+        {
+            (curr -> previous) -> next = curr -> next;
+            (curr -> next) -> previous = curr -> previous;
+            free(curr);
+            break;
+        }
+
+        // Delete first node
+        else if (strcmp(curr -> word, val) == 0 && curr == *start)
+        {
+            *start = curr -> next;
+            (*start) -> previous = NULL;
+            free(curr);
+            break;
+        }
+
+        // Delete end node
+        else if (strcmp(curr -> word, val) == 0)
+        {
+            (curr -> previous) -> next = NULL;
+            free(curr);
+            break;
+        }
+    }
 }
